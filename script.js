@@ -81,7 +81,7 @@ function saveToSheet(name, room, date, period, action) {
     const data = new URLSearchParams();
     data.append('name', name);
     data.append('room', room);
-    data.append('date', formatDate(date));
+    data.append('date', date);
     data.append('period', period);
     data.append('status', action);
 
@@ -205,9 +205,14 @@ document.getElementById('bookingForm').addEventListener('submit', (event) => {
     event.preventDefault();
 
     const name = document.getElementById('name').value;
-    const room = document.getElementById('room').value;
     const date = document.getElementById('date').value;
     const period = document.getElementById('period').value;
 
-    bookIctLab(room, date, period, name);
+    // Validate form data
+    if (!name || !date || !period) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    bookIctLab('Science Lab', date, period, name);
 });
