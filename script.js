@@ -91,6 +91,9 @@ function saveToSheet(name, room, date, period, action) {
     }).then(response => response.json())
       .then(result => {
           console.log('Data saved to sheet:', result);
+          if (action === 'active') {
+              alert('The Science Lab has been successfully booked!');
+          }
       }).catch(error => {
           console.error('Error saving data to sheet:', error);
       });
